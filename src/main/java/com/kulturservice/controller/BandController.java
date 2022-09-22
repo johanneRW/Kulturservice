@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
@@ -20,7 +21,7 @@ public class BandController {
     }
 
     @PostMapping("/createBand")
-    public ResponseEntity<Band> createBand(Band band) {
+    public ResponseEntity<Band> createBand(@RequestBody Band band) {
         bandService.save(band);
         return new ResponseEntity<>(band, HttpStatus.OK);
     }

@@ -9,10 +9,7 @@ import com.kulturservice.service.ReviewService;
 import com.kulturservice.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.Set;
@@ -31,7 +28,7 @@ public class ReviewController {
     }
 
     @PostMapping("/createReview")
-    public ResponseEntity<Review> createEvent(@RequestParam Long eId, @RequestParam Long uId, @RequestParam String reviewText, @RequestParam String rating, Review review) {
+    public ResponseEntity<Review> createEvent(@RequestParam Long eId, @RequestParam Long uId, @RequestParam String reviewText, @RequestParam String rating, @RequestBody Review review) {
         Optional<User> user_ = userService.findById(uId);
         if (user_.isPresent()) {
             User user = user_.get();

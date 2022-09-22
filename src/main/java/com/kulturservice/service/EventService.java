@@ -45,7 +45,7 @@ public class EventService implements IEventService {
         return eventRepository.findById(aLong);
     }
 
-
+    @Override
     public List<Event> findAllByOrderByEventDateAsc() {
         return eventRepository.findAllByOrderByEventDateAsc();
     }
