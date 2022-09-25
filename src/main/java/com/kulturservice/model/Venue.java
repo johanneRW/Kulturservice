@@ -18,8 +18,8 @@ public class Venue {
 
     private String venueName;
 
-    @ManyToMany (mappedBy = "venueLiked")
+    @ManyToMany(mappedBy = "venueLiked")
     @JsonBackReference("userLikes")
-    private Set<User> userLikes=new HashSet<>();
+    private Set<User> userLikes = new HashSet<>();
 
 }

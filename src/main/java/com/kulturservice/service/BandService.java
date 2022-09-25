@@ -33,13 +33,11 @@ public class BandService implements IBandService {
     @Override
     public void delete(Band band) {
         bandRepository.delete(band);
-
     }
 
     @Override
     public void deleteById(Long aLong) {
         bandRepository.deleteById(aLong);
-
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.kulturservice.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-//@Data
 @Getter
 @Setter
 @Entity
@@ -42,7 +40,7 @@ public class User {
     @JsonBackReference("bands")
     private Set<Band> bandLiked = new HashSet<>();
 
-
+    // Udskriver en liste af navne på de bands der er registreret som Likes på brugeren
     @JsonManagedReference
     public Set<String> getBandsLiked() {
         if (this.bandLiked != null) {
@@ -57,6 +55,7 @@ public class User {
         }
     }
 
+    // Udskriver en liste af navne på de venues der er registreret som Likes på brugeren
     @JsonManagedReference
     public Set<String> getVenuesLiked() {
         if (this.venueLiked != null) {

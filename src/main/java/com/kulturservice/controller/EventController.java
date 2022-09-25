@@ -19,9 +19,9 @@ import java.util.Set;
 @RestController
 public class EventController {
 
-    private EventService eventService;
-    private BandService bandService;
-    private VenueService venueService;
+    private final EventService eventService;
+    private final BandService bandService;
+    private final VenueService venueService;
 
     public EventController(EventService eventService, BandService bandService, VenueService venueService) {
         this.eventService = eventService;
@@ -30,13 +30,12 @@ public class EventController {
     }
 
     @PostMapping("/createEvent")
-//    public ResponseEntity<Event> createEvent(@RequestParam Long bId, @RequestParam Date date, @RequestParam String venue, @RequestBody Event event) {
- public ResponseEntity<Event> createEvent(@RequestParam Long bId,@ RequestParam Long vId,@RequestBody Event event) {
+    public ResponseEntity<Event> createEvent(@RequestParam Long bId, @RequestParam Long vId, @RequestBody Event event) {
         Optional<Band> band_ = bandService.findById(bId);
-        Optional<Venue> venue_=venueService.findById(vId);
-        if ((band_.isPresent())&&(venue_.isPresent())) {
+        Optional<Venue> venue_ = venueService.findById(vId);
+        if ((band_.isPresent()) && (venue_.isPresent())) {
             Band band = band_.get();
-            Venue venue=venue_.get();
+            Venue venue = venue_.get();
             event.setBand(band);
             event.setVenue(venue);
             eventService.save(event);
@@ -58,7 +57,7 @@ public class EventController {
 
     @GetMapping("/getFutureEvents")
     public ResponseEntity<List<Event>> getFutureEvents() {
-        Date toDay=new Date();
+        Date toDay = new Date();
         return new ResponseEntity<>(eventService.findAllByEventDateAfterOrderByEventDateAsc(toDay), HttpStatus.OK);
     }
 

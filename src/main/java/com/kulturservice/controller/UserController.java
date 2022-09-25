@@ -15,13 +15,13 @@ import java.util.Set;
 @RestController
 public class UserController {
 
+    private final UserService userService;
+    private final VenueService venueService;
+
     public UserController(UserService userService, VenueService venueService) {
         this.userService = userService;
         this.venueService = venueService;
     }
-
-    private UserService userService;
-    private VenueService venueService;
 
 
     @PostMapping("/createUser")
@@ -51,7 +51,7 @@ public class UserController {
             Venue venue = venue_.get();
             user.getVenueLiked().add(venue);
             userService.save(user);
-            return new ResponseEntity<>((venue.getVenueName() + " er tilføjet til " + user.getName() + " likes"), HttpStatus.OK);
+            return new ResponseEntity<>((venue.getVenueName() + " er tilføjet til " + user.getName() + "s likes"), HttpStatus.OK);
         } else {
             return new ResponseEntity<>("kunne ikke oprette like", HttpStatus.BAD_REQUEST);
         }

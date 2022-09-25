@@ -17,9 +17,9 @@ import java.util.Set;
 @RestController
 public class ReviewController {
 
-    private ReviewService reviewService;
-    private EventService eventService;
-    private UserService userService;
+    private final ReviewService reviewService;
+    private final EventService eventService;
+    private final UserService userService;
 
     public ReviewController(ReviewService reviewService, EventService eventService, UserService userService) {
         this.reviewService = reviewService;
@@ -28,7 +28,6 @@ public class ReviewController {
     }
 
     @PostMapping("/createReview")
-//    public ResponseEntity<Review> createEvent(@RequestParam Long eId, @RequestParam Long uId, @RequestParam String reviewText, @RequestParam String rating, @RequestBody Review review) {
     public ResponseEntity<Review> createEvent(@RequestParam Long eId, @RequestParam Long uId, @RequestBody Review review) {
         Optional<User> user_ = userService.findById(uId);
         Optional<Event> event_ = eventService.findById(eId);

@@ -32,7 +32,6 @@ public class VenueService implements IVenueService {
     @Override
     public void delete(Venue venue) {
         venueRepository.delete(venue);
-
     }
 
     @Override

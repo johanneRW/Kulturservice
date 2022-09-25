@@ -1,8 +1,6 @@
 package com.kulturservice.controller;
 
-import com.kulturservice.model.Band;
 import com.kulturservice.model.Venue;
-import com.kulturservice.service.BandService;
 import com.kulturservice.service.VenueService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,7 @@ import java.util.Set;
 @RestController
 public class VenueController {
 
-    private VenueService venueService;
+    private final VenueService venueService;
 
     public VenueController(VenueService venueService) {
         this.venueService = venueService;
