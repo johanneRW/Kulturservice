@@ -4,10 +4,9 @@ import com.kulturservice.Repository.EventRepository;
 import com.kulturservice.model.Event;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class EventService implements IEventService {
@@ -48,5 +47,10 @@ public class EventService implements IEventService {
     @Override
     public List<Event> findAllByOrderByEventDateAsc() {
         return eventRepository.findAllByOrderByEventDateAsc();
+    }
+
+    @Override
+    public List<Event> findAllByEventDateAfterOrderByEventDateAsc(Date date) {
+        return eventRepository.findAllByEventDateAfterOrderByEventDateAsc(date);
     }
 }

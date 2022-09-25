@@ -20,7 +20,7 @@ public class Review {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("Event")
     @EqualsAndHashCode.Exclude
     private Event event;
 
@@ -29,7 +29,7 @@ public class Review {
     private String rating;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("User")
     @EqualsAndHashCode.Exclude
 
     private User user;

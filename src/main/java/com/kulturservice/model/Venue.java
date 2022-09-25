@@ -1,8 +1,6 @@
 package com.kulturservice.model;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,23 +8,18 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-//@Data
 @Getter
 @Setter
 @Entity
-public class Band {
-
+public class Venue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String bandName;
+    private String venueName;
 
-    @OneToMany(mappedBy="band")
-    private Set<Event> events= new HashSet<>();
-
-    @ManyToMany (mappedBy = "bandLiked")
-    @JsonBackReference("bandLiked")
+    @ManyToMany (mappedBy = "venueLiked")
+    @JsonBackReference("userLikes")
     private Set<User> userLikes=new HashSet<>();
 
 }

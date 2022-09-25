@@ -25,10 +25,12 @@ public class Event {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date eventDate;
 
-    private String venue;
+    @ManyToOne
+    @JoinColumn(name = "venue_id")
+    private Venue venue;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("Band")
     @EqualsAndHashCode.Exclude
     private Band band;
 

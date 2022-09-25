@@ -28,23 +28,17 @@ public class ReviewController {
     }
 
     @PostMapping("/createReview")
-    public ResponseEntity<Review> createEvent(@RequestParam Long eId, @RequestParam Long uId, @RequestParam String reviewText, @RequestParam String rating, @RequestBody Review review) {
+//    public ResponseEntity<Review> createEvent(@RequestParam Long eId, @RequestParam Long uId, @RequestParam String reviewText, @RequestParam String rating, @RequestBody Review review) {
+    public ResponseEntity<Review> createEvent(@RequestParam Long eId, @RequestParam Long uId, @RequestBody Review review) {
         Optional<User> user_ = userService.findById(uId);
-        if (user_.isPresent()) {
+        Optional<Event> event_ = eventService.findById(eId);
+        if (user_.isPresent() && (event_.isPresent())) {
             User user = user_.get();
-
-            Optional<Event> event_ = eventService.findById(eId);
-            if (event_.isPresent()) {
-                Event event = event_.get();
-                review.setEvent(event);
-                review.setUser(user);
-                review.setText(reviewText);
-                review.setRating(rating);
-                reviewService.save(review);
-                return new ResponseEntity<>(review, HttpStatus.OK);
-
-            } else return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-
+            Event event = event_.get();
+            review.setEvent(event);
+            review.setUser(user);
+            reviewService.save(review);
+            return new ResponseEntity<>(review, HttpStatus.OK);
         } else return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
