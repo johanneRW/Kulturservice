@@ -43,7 +43,7 @@ public class BandController {
             User user = user_.get();
             user.getBandLiked().add(band);
             userService.save(user);
-            return new ResponseEntity<>((band.getBandName() + " er tilføjet til " + user.getName() + "s likes"), HttpStatus.OK);
+            return new ResponseEntity<>((band.getBandName() + " er tilføjet til " + user.getUserName() + "s likes"), HttpStatus.OK);
         } else {
             return new ResponseEntity<>("kunne ikke oprette like", HttpStatus.BAD_REQUEST);
         }
