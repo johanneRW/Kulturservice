@@ -6,6 +6,7 @@ import com.kulturservice.security.JwtUserDetailsService;
 import com.kulturservice.security.TokenManager;
 import com.kulturservice.security.models.JwtRequestModel;
 import com.kulturservice.security.models.JwtResponseModel;
+import com.kulturservice.service.RoleService;
 import com.kulturservice.service.UserService;
 import com.kulturservice.service.VenueService;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class UserController {
     private final TokenManager tokenManager;
     private final UserService userService;
     private final VenueService venueService;
+    private final RoleService roleService;
 
 
 
@@ -74,12 +76,12 @@ public class UserController {
         User user = new User(request.getUsername(), encryptedPassword);
         if (userService.findUserByUserName(user.getUserName()).size() == 0) {
             if (userService.save(user) != null) {
-                return ResponseEntity.ok(new JwtResponseModel("created user: " + user.getUserName() + " pw: " + user.getPassword()));
+                return ResponseEntity.ok(new JwtResponseModel("created user: " + user.getUserName() + " pw: " + user.getPassword(), null));
             } else {
-                return ResponseEntity.ok(new JwtResponseModel("error creating user: " + user.getUserName() ));
+                return ResponseEntity.ok(new JwtResponseModel("error creating user: " + user.getUserName(), null));
             }
         } else {
-            return ResponseEntity.ok(new JwtResponseModel("error: user exists: " + user.getUserName() ));
+            return ResponseEntity.ok(new JwtResponseModel("error: user exists: " + user.getUserName(), null));
         }
     }
 
@@ -95,11 +97,11 @@ public class UserController {
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
-            return ResponseEntity.ok(new JwtResponseModel("bad credentials"));
+            return ResponseEntity.ok(new JwtResponseModel("bad credentials", null));
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         final String jwtToken = tokenManager.generateJwtToken(userDetails);
-        return ResponseEntity.ok(new JwtResponseModel(jwtToken));
+        return ResponseEntity.ok(new JwtResponseModel(jwtToken, userDetails.getAuthorities()));
     }
 
 

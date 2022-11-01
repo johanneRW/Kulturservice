@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -58,7 +59,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
         public void addCorsMappings(CorsRegistry registry) {
             System.out.println("addCorsMappings called");
             registry.addMapping("/**")  // /** means match any string recursively
-                    .allowedOriginPatterns("http://localhost:*") //Multiple strings allowed. Wildcard * matches all port numbers.
+                    .allowedOriginPatterns("http://localhost:*","http://127.0.0.1:*") //Multiple strings allowed. Wildcard * matches all port numbers.
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
                     .allowCredentials(true);
         }
