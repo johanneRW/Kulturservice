@@ -58,7 +58,7 @@ public class EventController {
 
     }
 
-    @Secured("ROLE_USER")
+@PreAuthorize("hasAuthority('user')")
     @GetMapping("/getFutureEvents")
     public ResponseEntity<List<Event>> getFutureEvents() {
         Date toDay = new Date();
