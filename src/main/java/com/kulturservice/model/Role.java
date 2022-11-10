@@ -13,7 +13,6 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-   // @Column(nullable = false, length = 50, unique = true)
     private String name;
 
     public Role() { }

@@ -8,9 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 
 import javax.persistence.*;
@@ -102,8 +99,4 @@ public class User{
         return authorities;
     }
 
-//    public String getUserName(){
-//        SecurityContext securityContext = SecurityContextHolder.getContext();
-//        return securityContext.getAuthentication().getName();
-//    }
 }
