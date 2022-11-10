@@ -3,6 +3,8 @@ package com.kulturservice.security;
 
 import com.kulturservice.service.IUserService;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +18,10 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Getter
+@Setter
 public class JwtUserDetailsService implements UserDetailsService {
+
     private IUserService userService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

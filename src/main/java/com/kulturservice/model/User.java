@@ -17,6 +17,7 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "users") // fordi @DataJpaTest ikke accepterer navnet "User"
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

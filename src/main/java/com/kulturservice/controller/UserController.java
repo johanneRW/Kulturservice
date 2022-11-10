@@ -10,7 +10,9 @@ import com.kulturservice.service.RoleService;
 import com.kulturservice.service.UserService;
 import com.kulturservice.service.VenueService;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,15 +25,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+
 @RestController
-@AllArgsConstructor
+//@AllArgsConstructor
 public class UserController {
-    private final JwtUserDetailsService userDetailsService;
-    private final AuthenticationManager authenticationManager;
-    private final TokenManager tokenManager;
-    private final UserService userService;
-    private final VenueService venueService;
-    private final RoleService roleService;
+
+
+    private  JwtUserDetailsService userDetailsService;
+    private AuthenticationManager authenticationManager;
+    private  TokenManager tokenManager;
+    private  UserService userService;
+    private  VenueService venueService;
+    private  RoleService roleService;
+    private  JwtUserDetailsService jwtUserDetailsService;
+
+    public UserController(JwtUserDetailsService userDetailsService, AuthenticationManager authenticationManager, TokenManager tokenManager, UserService userService, VenueService venueService, RoleService roleService, JwtUserDetailsService jwtUserDetailsService) {
+        this.userDetailsService = userDetailsService;
+        this.authenticationManager = authenticationManager;
+        this.tokenManager = tokenManager;
+        this.userService = userService;
+        this.venueService = venueService;
+        this.roleService = roleService;
+        this.jwtUserDetailsService = jwtUserDetailsService;
+    }
 
 
 
